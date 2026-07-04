@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EduBot - Quantum Physics Basics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#ffb59a",
+                    "surface": "#f8f9fa",
+                    "surface-tint": "#1353d8",
+                    "secondary-fixed": "#eaddff",
+                    "on-surface-variant": "#434654",
+                    "primary-fixed-dim": "#b5c4ff",
+                    "inverse-surface": "#2e3132",
+                    "inverse-on-surface": "#f0f1f2",
+                    "on-secondary": "#ffffff",
+                    "primary": "#003fb1",
+                    "background": "#f8f9fa",
+                    "surface-dim": "#d9dadb",
+                    "inverse-primary": "#b5c4ff",
+                    "primary-container": "#1a56db",
+                    "on-tertiary-fixed": "#380d00",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#ffdbcf",
+                    "on-primary-fixed-variant": "#003dab",
+                    "primary-fixed": "#dbe1ff",
+                    "surface-container-highest": "#e1e3e4",
+                    "on-secondary-fixed": "#25005a",
+                    "on-primary-fixed": "#00174d",
+                    "secondary": "#712ae2",
+                    "tertiary": "#852b00",
+                    "tertiary-container": "#ad3b00",
+                    "on-tertiary-container": "#ffd4c5",
+                    "on-secondary-container": "#fffbff",
+                    "surface-variant": "#e1e3e4",
+                    "secondary-fixed-dim": "#d2bbff",
+                    "on-error": "#ffffff",
+                    "on-primary-container": "#d4dcff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed-variant": "#802a00",
+                    "on-surface": "#191c1d",
+                    "surface-container-high": "#e7e8e9",
+                    "surface-container-low": "#f3f4f5",
+                    "surface-container": "#edeeef",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#f8f9fa",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed-variant": "#5a00c6",
+                    "outline-variant": "#c3c5d7",
+                    "on-background": "#191c1d",
+                    "secondary-container": "#8a4cfc",
+                    "outline": "#737686",
+                    "on-error-container": "#93000a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "8px",
+                    "container-max": "1200px",
+                    "base": "4px",
+                    "lg": "32px",
+                    "sm": "16px",
+                    "gutter": "20px",
+                    "md": "24px",
+                    "xl": "48px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Manrope"],
+                    "body-lg": ["Manrope"],
+                    "label-sm": ["JetBrains Mono"],
+                    "headline-md": ["Manrope"],
+                    "headline-sm": ["Manrope"],
+                    "body-md": ["Manrope"],
+                    "headline-lg-mobile": ["Manrope"]
+            },
+            "fontSize": {
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e1e3e4;
+            border-radius: 10px;
+        }
+        .sidebar-item-active {
+            background-color: #dbe1ff;
+            color: #00174d;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-hidden flex h-screen">
+<!-- Left Sidebar -->
+<aside class="w-72 bg-surface-container-low border-r border-outline-variant flex flex-col h-full shrink-0">
+<div class="p-md">
+<button class="w-full flex items-center justify-center gap-xs bg-primary text-on-primary py-sm px-md rounded-xl font-bold shadow-md hover:opacity-90 transition-all active:scale-95">
+<span class="material-symbols-outlined">add</span>
+New Chat
+</button>
+</div>
+<nav class="flex-1 overflow-y-auto px-sm custom-scrollbar space-y-md">
+<div>
+<h4 class="px-xs mb-xs text-label-sm text-outline font-bold uppercase tracking-widest">Today</h4>
+<div class="space-y-base">
+<a class="flex items-center gap-xs px-xs py-sm rounded-lg sidebar-item-active group" href="#">
+<span class="material-symbols-outlined text-body-lg">chat_bubble</span>
+<span class="flex-1 truncate text-body-md font-medium">Basics of Quantum Physics</span>
+<button class="material-symbols-outlined text-outline opacity-0 group-hover:opacity-100 hover:text-primary transition-opacity">more_horiz</button>
+</a>
+<a class="flex items-center gap-xs px-xs py-sm rounded-lg hover:bg-surface-container transition-colors group text-on-surface-variant" href="#">
+<span class="material-symbols-outlined text-body-lg">chat_bubble</span>
+<span class="flex-1 truncate text-body-md">Multivariable Calculus Unit 4</span>
+<button class="material-symbols-outlined text-outline opacity-0 group-hover:opacity-100 hover:text-primary transition-opacity">more_horiz</button>
+</a>
+</div>
+</div>
+<div>
+<h4 class="px-xs mb-xs text-label-sm text-outline font-bold uppercase tracking-widest">Yesterday</h4>
+<div class="space-y-base">
+<a class="flex items-center gap-xs px-xs py-sm rounded-lg hover:bg-surface-container transition-colors group text-on-surface-variant" href="#">
+<span class="material-symbols-outlined text-body-lg">chat_bubble</span>
+<span class="flex-1 truncate text-body-md">Astrophysics Intro</span>
+<button class="material-symbols-outlined text-outline opacity-0 group-hover:opacity-100 hover:text-primary transition-opacity">more_horiz</button>
+</a>
+</div>
+</div>
+<div>
+<h4 class="px-xs mb-xs text-label-sm text-outline font-bold uppercase tracking-widest">Last 7 Days</h4>
+<div class="space-y-base">
+<a class="flex items-center gap-xs px-xs py-sm rounded-lg hover:bg-surface-container transition-colors group text-on-surface-variant" href="#">
+<span class="material-symbols-outlined text-body-lg">chat_bubble</span>
+<span class="flex-1 truncate text-body-md">Newtonian Mechanics Recap</span>
+</a>
+<a class="flex items-center gap-xs px-xs py-sm rounded-lg hover:bg-surface-container transition-colors group text-on-surface-variant" href="#">
+<span class="material-symbols-outlined text-body-lg">chat_bubble</span>
+<span class="flex-1 truncate text-body-md">Organic Chemistry Lab Notes</span>
+</a>
+</div>
+</div>
+</nav>
+<div class="p-sm border-t border-outline-variant">
+<button class="w-full flex items-center gap-sm px-xs py-sm rounded-lg hover:bg-surface-container transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-body-md font-medium">Settings</span>
+</button>
+<button class="w-full flex items-center gap-sm px-xs py-sm rounded-lg hover:bg-surface-container transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">help</span>
+<span class="text-body-md font-medium">Help Center</span>
+</button>
+</div>
+</aside>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col min-w-0 bg-background relative h-full">
+<!-- Header -->
+<header class="h-16 flex justify-between items-center px-lg border-b border-outline-variant bg-background/80 backdrop-blur-md sticky top-0 z-30">
+<div class="flex items-center gap-sm">
+<h2 class="text-headline-sm font-bold text-on-surface truncate">Basics of Quantum Physics</h2>
+</div>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">notifications</button>
+<div class="flex items-center gap-xs">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjo41sWv-VtBGlpZHkRWhgkqsH6_pS0IbKLsLt2wT_n74keAhyRjOPW9Y17_6IQb5AboTbr2LECMPwvdF-C8UKWLcIhZTHGXLwp0OB0-lFpAASbY7pB9bqIn3UQo8x_614G4FJVWe3mX1aLdGUNruRxwQmlkWuKDcDMQqPywSyMW5mx8UOULtiZU8MJfmEIIts81q4hfeRnWVUkTKgB9FwwmTVU49MZxSAItukOphkILirGPCPV2TEX3IYwa9svAggysb45Ialfj4"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Chat Stream -->
+<main class="flex-1 overflow-y-auto custom-scrollbar">
+<div class="max-w-4xl mx-auto px-md py-xl space-y-xl">
+<!-- User Message -->
+<div class="flex justify-end">
+<div class="max-w-[80%] bg-surface-container-lowest rounded-2xl p-md shadow-[0_4px_15px_rgba(0,0,0,0.04)] border border-outline-variant">
+<p class="text-body-lg text-on-surface">Can you explain the basics of Quantum Physics?</p>
+<div class="flex justify-end mt-xs">
+<span class="text-label-sm font-label-sm text-outline opacity-60">10:42 AM</span>
+</div>
+</div>
+</div>
+<!-- AI Response -->
+<div class="flex justify-start">
+<div class="max-w-[90%] bg-primary-fixed rounded-2xl p-md border border-primary/10">
+<div class="flex items-center gap-xs mb-sm">
+<span class="material-symbols-outlined text-primary text-headline-sm" style="font-variation-settings: 'FILL' 1;">smart_toy</span>
+<span class="text-headline-sm font-bold text-primary">EduBot</span>
+</div>
+<div class="space-y-md text-body-lg text-on-background">
+<p>Hello! I'd love to help you dive into the fascinating world of **Quantum Physics**. At its heart, it's the study of matter and energy at the most fundamental level.</p>
+<div class="grid grid-cols-1 gap-sm pl-md border-l-4 border-primary/20 bg-primary/5 py-sm rounded-r-lg">
+<p><span class="font-bold text-primary">1. Wave-Particle Duality:</span> Objects can exhibit properties of both particles and waves.</p>
+<p><span class="font-bold text-primary">2. Superposition:</span> Particles can exist in multiple states simultaneously until measured.</p>
+<p><span class="font-bold text-primary">3. Entanglement:</span> Two particles can become linked, where the state of one instantly influences the other.</p>
+</div>
+<p>For a deep dive, I highly recommend <span class="font-bold">Prof. Allan Adams' MIT course</span>. It's a fantastic primary resource for understanding the experimental basis of quantum mechanics.</p>
+<p>You can watch the first lecture here: <a class="text-primary underline font-medium" href="https://www.youtube.com/watch?v=lZ3bPUKo5zc">MIT Quantum Physics I</a></p>
+<p>For a broader context on how these concepts fit into the universe, <span class="italic">"A Brief History of Time"</span> by Stephen Hawking is an excellent read for students.</p>
+<!-- Enhanced Video Card -->
+<div class="mt-lg">
+<div class="bg-surface-container-lowest rounded-2xl overflow-hidden border border-outline-variant shadow-lg max-w-2xl">
+<!-- Video Thumbnail -->
+<div class="relative aspect-video bg-surface-dim flex items-center justify-center group cursor-pointer overflow-hidden">
+<img alt="Quantum Physics Video Thumbnail" class="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaUxk6I2nOBOlHMmq8wBLP-sJ8ERKTwQJw83WdwOqn5GMvjtpJ1dA_BJH0CvR56dusNJ3KiBPKsDkKr1DQsHRXc8akGgmfFN3mcs_XUqAVamk4E5Kad3hz5wD0esgojBXCvElPSCTRDuM1NpuzCQHa-3OfObuZQGJREhy3flMdpDocGU_NPFpbGs-etJOTDWD3FqjlufRMI3ztZfhAWTsrSKPo90ILPy7TpqzWsfXPY6iHjTElNl1_xUG-hGIvr65469b7YYZLTbc"/>
+<div class="absolute inset-0 flex items-center justify-center bg-black/10 group-hover:bg-black/0 transition-colors">
+<div class="w-16 h-16 bg-primary text-on-primary rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+</div>
+<div class="absolute bottom-sm right-sm bg-black/70 text-white text-label-sm px-xs py-[2px] rounded-md font-bold">45:12</div>
+</div>
+<div class="p-md space-y-md">
+<!-- Title -->
+<h3 class="text-headline-sm font-bold text-on-surface">Quantum Physics I: The Wave Function</h3>
+<!-- Smart Summary -->
+<div class="bg-primary-fixed-dim/30 p-sm rounded-xl border border-primary/10">
+<div class="flex items-center gap-xs mb-xs">
+<span class="material-symbols-outlined text-primary text-body-lg">auto_awesome</span>
+<span class="text-label-sm font-bold text-primary uppercase tracking-wider">Smart Summary</span>
+</div>
+<p class="text-body-md text-on-surface-variant">This lecture introduces the fundamental concept of the wave function, exploring how it describes the state of a quantum system and the probabilistic nature of measurements.</p>
+</div>
+<!-- Concept Roadmap -->
+<div class="space-y-sm">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary text-body-lg">route</span>
+<span class="text-label-sm font-bold text-on-surface-variant uppercase tracking-wider">Concept Roadmap</span>
+</div>
+<div class="space-y-xs pl-md border-l-2 border-outline-variant">
+<div class="flex items-center gap-sm">
+<span class="text-primary font-bold font-label-sm w-12 shrink-0">02:15</span>
+<span class="text-body-md text-on-surface">Wave-Particle Duality Basics</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="text-primary font-bold font-label-sm w-12 shrink-0">08:40</span>
+<span class="text-body-md text-on-surface">The Schrodinger Equation Explained</span>
+</div>
+<div class="flex items-center gap-sm">
+<span class="text-primary font-bold font-label-sm w-12 shrink-0">12:10</span>
+<span class="text-body-md text-on-surface">Conceptual Deep Dive</span>
+</div>
+</div>
+</div>
+<!-- Handy Notes -->
+<div class="border-t border-outline-variant pt-md">
+<button class="flex items-center justify-between w-full text-on-surface hover:text-primary transition-colors group">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-body-lg">sticky_note_2</span>
+<span class="text-label-sm font-bold uppercase tracking-wider">Handy Notes</span>
+</div>
+<span class="material-symbols-outlined group-hover:translate-y-0.5 transition-transform">expand_more</span>
+</button>
+<div class="mt-sm grid grid-cols-2 gap-sm">
+<div class="bg-surface-container p-sm rounded-xl border border-outline-variant">
+<p class="text-label-sm font-bold text-primary mb-xs">De Broglie Wavelength</p>
+<code class="text-body-md font-label-sm block py-xs px-sm bg-surface-container-lowest rounded border border-outline-variant">λ = h / p</code>
+</div>
+<div class="bg-surface-container p-sm rounded-xl border border-outline-variant">
+<p class="text-label-sm font-bold text-primary mb-xs">Wave Function Notation</p>
+<code class="text-body-md font-label-sm block py-xs px-sm bg-surface-container-lowest rounded border border-outline-variant">Ψ(x, t)</code>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="flex justify-end mt-sm">
+<span class="text-label-sm font-label-sm text-outline opacity-60">10:43 AM</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Input Area -->
+<div class="sticky bottom-0 w-full bg-gradient-to-t from-background via-background to-transparent pt-xl pb-lg">
+<div class="max-w-4xl mx-auto px-md">
+<div class="bg-surface-container-lowest rounded-2xl shadow-xl border border-outline-variant p-sm flex items-center gap-sm">
+<button class="w-12 h-12 flex items-center justify-center text-outline hover:bg-surface-container hover:text-primary transition-all rounded-xl">
+<span class="material-symbols-outlined">attach_file</span>
+</button>
+<textarea class="flex-1 bg-transparent border-none focus:ring-0 text-body-lg py-sm px-base resize-none max-h-32 min-h-[48px]" id="chat-input" placeholder="Ask EduBot something..." rows="1"></textarea>
+<button class="w-12 h-12 bg-primary text-on-primary flex items-center justify-center rounded-xl hover:opacity-90 active:scale-95 transition-all shadow-md">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+<p class="text-center text-label-sm text-outline mt-sm opacity-60">EduBot can make mistakes. Check important info.</p>
+</div>
+</div>
+</div>
+<script>
+    const input = document.getElementById('chat-input');
+    
+    // Auto-resize textarea
+    input.addEventListener('input', function() {
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight) + 'px';
+    });
+
+    input.addEventListener('focus', () => {
+        input.parentElement.classList.add('ring-4', 'ring-primary/10', 'border-primary/30');
+    });
+
+    input.addEventListener('blur', () => {
+        input.parentElement.classList.remove('ring-4', 'ring-primary/10', 'border-primary/30');
+    });
+
+    input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            if (input.value.trim() !== '') {
+                console.log('Sending message:', input.value);
+                input.value = '';
+                input.style.height = 'auto';
+            }
+        }
+    });
+</script>
+</body></html>
